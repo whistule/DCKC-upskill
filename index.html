@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Upskill yourself and other DCKC members</title>
+<title>DCKC - Facilitating Learning for Yourself and Other Members</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -122,6 +122,61 @@
   }
 
   /* Tabs */
+  /* Top-level tabs (pathway chooser) */
+  .tabs-top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    position: sticky;
+    top: 0;
+    background: var(--paper);
+    z-index: 11;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(42, 58, 85, 0.15);
+  }
+
+  .tab-top {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.05rem;
+    letter-spacing: -0.005em;
+    padding: 0.75rem 1.25rem;
+    background: transparent;
+    border: 1px solid rgba(42, 58, 85, 0.2);
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 2px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .tab-top:hover {
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+
+  .tab-top.active {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+
+  .tab-top.active .num {
+    color: var(--accent);
+  }
+
+  .tab-top .num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  /* Sub-tabs (within a pathway) */
   .tabs {
     display: flex;
     flex-wrap: wrap;
@@ -129,11 +184,13 @@
     border-bottom: 2px solid var(--rule);
     margin-bottom: 2.5rem;
     position: sticky;
-    top: 0;
+    top: 64px;
     background: var(--paper);
     z-index: 10;
     padding-top: 0.5rem;
   }
+
+  .tabs[hidden] { display: none; }
 
   .tab {
     font-family: 'Inter', sans-serif;
@@ -814,6 +871,153 @@
     margin-top: 0.15rem;
   }
 
+  /* Funding spectrum */
+  .spectrum-wrapper {
+    margin: 2.5rem 0 2rem;
+  }
+
+  .spectrum-axis-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    gap: 1rem;
+  }
+
+  .spectrum-axis-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--ink-soft);
+    max-width: 42%;
+  }
+
+  .spectrum-axis-label.right { text-align: right; }
+
+  .spectrum-axis-label small {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.85rem;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--muted);
+    margin-top: 0.25rem;
+    line-height: 1.3;
+  }
+
+  .spectrum-bar {
+    position: relative;
+    height: 6px;
+    background: linear-gradient(to right,
+      var(--ink) 0%,
+      var(--accent) 100%);
+    border-radius: 3px;
+    margin: 2.25rem 0 5rem 0;
+  }
+
+  .spectrum-marker {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    border-radius: 50%;
+    z-index: 2;
+  }
+
+  .spectrum-marker::after {
+    content: attr(data-label);
+    position: absolute;
+    top: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 0.92rem;
+    color: var(--ink);
+    white-space: nowrap;
+    letter-spacing: -0.005em;
+  }
+
+  .spectrum-marker.tick-up::after {
+    top: -28px;
+  }
+
+  /* Alternate markers above/below so labels don't collide */
+  .spectrum-marker:nth-child(odd)::after {
+    top: -28px;
+  }
+
+  .spectrum-marker:nth-child(even)::after {
+    top: 22px;
+  }
+
+  .spectrum-marker.highlight {
+    border-color: var(--accent-deep);
+    background: var(--accent);
+    box-shadow: 0 0 0 4px rgba(226, 123, 60, 0.2);
+  }
+
+  .spectrum-examples {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .spectrum-example {
+    background: var(--paper-warm);
+    padding: 1.35rem 1.5rem;
+    border-top: 3px solid var(--ink);
+    position: relative;
+  }
+
+  .spectrum-example.right-end {
+    border-top-color: var(--accent);
+  }
+
+  .spectrum-example-position {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .spectrum-example-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.3rem;
+    letter-spacing: -0.005em;
+    margin-bottom: 0.6rem;
+  }
+
+  .spectrum-example-body {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  @media (max-width: 600px) {
+    .spectrum-examples { grid-template-columns: 1fr; }
+    .spectrum-marker::after,
+    .spectrum-marker:nth-child(odd)::after,
+    .spectrum-marker:nth-child(even)::after {
+      font-size: 0.75rem;
+    }
+  }
+
   /* Course hub */
   .course-block {
     margin: 2rem 0 2.5rem;
@@ -1118,6 +1322,10 @@
   @media (max-width: 600px) {
     .wrapper { padding: 2rem 1.25rem 3rem; }
     .tab { padding: 0.7rem 0.7rem; font-size: 0.65rem; letter-spacing: 0.12em; }
+    .tab-top { padding: 0.5rem 0.8rem; font-size: 0.85rem; flex: 1; justify-content: center; }
+    .tab-top .num { font-size: 0.75rem; }
+    .tabs-top { gap: 0.3rem; padding: 0.4rem 0; }
+    .tabs { top: 54px; }
     .money-flow { padding: 1.25rem; }
     .money-flow .flow-row { grid-template-columns: 1fr auto; gap: 0.5rem; }
     .money-flow .arrow { display: none; }
@@ -1165,23 +1373,35 @@
       </svg>
       <div class="logo">Drumchapel &amp; Clydebank<br>Kayak Club</div>
     </div>
-    <div class="meta">Members' Guide · No. 01</div>
+    <div class="meta">Members' Guide · v1.3</div>
   </header>
 
   <div class="title-block">
     <div class="kicker">A Practical Guide</div>
-    <h1>Upskill <em>yourself</em> and other DCKC members</h1>
+    <h1>Facilitating learning <em>for yourself</em> and other DCKC members</h1>
     <p class="subtitle">How members can set up coaching, courses and assessments for the club - how the funding works, how to find providers, and what actually makes a course run.</p>
   </div>
 
-  <nav class="tabs" role="tablist">
-    <button class="tab active" data-target="overview"><span class="num">01</span>Overview</button>
-    <button class="tab" data-target="funding"><span class="num">02</span>How the funding works</button>
-    <button class="tab" data-target="providers"><span class="num">03</span>Finding providers</button>
-    <button class="tab" data-target="organising"><span class="num">04</span>Organising a course</button>
-    <button class="tab" data-target="signup"><span class="num">05</span>Signing up, payment &amp; cancellation</button>
-    <button class="tab" data-target="communicating"><span class="num">06</span>Communicating with the group</button>
-    <button class="tab" data-target="info-pages"><span class="num">07</span>Course info pages</button>
+  <nav class="tabs-top" role="tablist" aria-label="Main sections">
+    <button class="tab-top active" data-pathway="overview"><span class="num">01</span>Overview</button>
+    <button class="tab-top" data-pathway="individual"><span class="num">02</span>Individual sign-up</button>
+    <button class="tab-top" data-pathway="group"><span class="num">03</span>Group courses</button>
+  </nav>
+
+  <nav class="tabs tabs-sub" role="tablist" data-pathway-scope="individual" aria-label="Individual sign-up sections" hidden>
+    <button class="tab" data-target="ind-what"><span class="num">i</span>What it is</button>
+    <button class="tab" data-target="ind-finding"><span class="num">ii</span>Finding a course</button>
+    <button class="tab" data-target="ind-support"><span class="num">iii</span>Club support</button>
+  </nav>
+
+  <nav class="tabs tabs-sub" role="tablist" data-pathway-scope="group" aria-label="Group courses sections" hidden>
+    <button class="tab" data-target="group-overview"><span class="num">i</span>Group overview</button>
+    <button class="tab" data-target="funding"><span class="num">ii</span>How the funding works</button>
+    <button class="tab" data-target="providers"><span class="num">iii</span>Finding providers</button>
+    <button class="tab" data-target="organising"><span class="num">iv</span>Organising a course</button>
+    <button class="tab" data-target="signup"><span class="num">v</span>Signing up, payment &amp; cancellation</button>
+    <button class="tab" data-target="communicating"><span class="num">vi</span>Communicating with the group</button>
+    <button class="tab" data-target="info-pages"><span class="num">vii</span>Course info pages</button>
   </nav>
 
   <!-- PANEL 1: OVERVIEW -->
@@ -1191,7 +1411,150 @@
 
     <p>The club can't run every course someone might want centrally. What it can do is provide the structure, the funding pathway, and the accumulated practical know-how so that any member with the motivation to organise a course for themselves and others has what they need to make it happen.</p>
 
-    <p>Courses and assessments work best for everyone when the club can pull together a group of members - <strong>a full group for training courses</strong> (ratios vary with the course, but filling them to the maximum is always preferred), <strong>and typically two candidates per day for assessments</strong> - so that a course or assessment can be run for club members with the costs shared between them. Each participant typically contributes <strong>£50 per course</strong>, which keeps individual costs reasonable while giving a provider a worthwhile booking. <em>Training courses typically run over two days; assessments are typically a single day.</em></p>
+    <h3>Two pathways</h3>
+    <p>Some courses and qualifications work best when members find the course and book on individually. Other courses and assessments work best for everyone when the club can pull together a group of members, so that a course or assessment can be run for club members with the costs shared between them. This guide covers <strong>both pathways</strong>:</p>
+
+    <ul>
+      <li>If you're looking at a course you can book directly with Paddle Scotland, see the <strong>Individual sign-up</strong> tab.</li>
+      <li>If you're organising or joining a club-run course, see the <strong>Group courses</strong> tab.</li>
+    </ul>
+
+    <h3>Which pathway for which qualification?</h3>
+    <p>Any course run and subsidised by Paddle Scotland at the course level can be pursued individually. Some qualifications only really work well at club level. The spectrum below shows some of the many examples of training courses and qualifications, and how they fit with finding the optimal delivery method. Knowing which end of the spectrum you're on helps you decide whether to book on yourself or step up as a course organiser-facilitator.</p>
+
+    <div class="spectrum-wrapper">
+      <div class="spectrum-axis-labels">
+        <div class="spectrum-axis-label">
+          Paddle Scotland funded
+          <small>individual sign-up to scheduled courses</small>
+        </div>
+        <div class="spectrum-axis-label right">
+          Club-level facilitation
+          <small>organiser pulls group together, club tops up funding</small>
+        </div>
+      </div>
+      <div class="spectrum-bar">
+        <div class="spectrum-marker" style="left: 4%;" data-label="Core Coach"></div>
+        <div class="spectrum-marker" style="left: 22%;" data-label="Sheltered Water Coach"></div>
+        <div class="spectrum-marker" style="left: 50%;" data-label="PSL"></div>
+        <div class="spectrum-marker highlight" style="left: 72%;" data-label="SKL"></div>
+        <div class="spectrum-marker" style="left: 94%;" data-label="ASKL"></div>
+      </div>
+
+      <div class="spectrum-examples">
+        <div class="spectrum-example">
+          <div class="spectrum-example-position">Left of the spectrum</div>
+          <div class="spectrum-example-name">Core Coach</div>
+          <p class="spectrum-example-body">Almost entirely funded by Paddle Scotland and run as open courses that members can book directly. There's little for a club organiser to do here beyond pointing interested members at the Paddle Scotland website. The club's role is to encourage members to take these up, not to set them up.</p>
+        </div>
+        <div class="spectrum-example right-end">
+          <div class="spectrum-example-position">Right of the spectrum</div>
+          <div class="spectrum-example-name">SKL (and ASKL)</div>
+          <p class="spectrum-example-body">These are where the setup and funding work best at club level. A group of interested members, an organiser-facilitator, a negotiated provider rate, and a club top-up. Most of the <strong>Group courses</strong> content is written with SKL and PSL in mind - that's where the framework earns its keep.</p>
+        </div>
+      </div>
+    </div>
+
+    <p>PSL sits in the middle of the spectrum - some PSL training does run as open Paddle Scotland courses that members can join, but in practice the club has found it more effective to organise it in-house alongside SKL so that members can progress through both qualifications with a consistent group and provider. Sheltered Water Coach sits closer to the Core Coach end - it runs as open courses often enough that individual sign-up is usually the simpler route.</p>
+
+    <h3>Why is one pathway better than the other in certain situations?</h3>
+    <p>Some courses greatly benefit from splitting the cost of a provider amongst a group, with the provider's rate negotiated at course level. Typically in these cases a whole group of club members can be upskilled for the same cost as someone attending an equivalent commercial course. This also allows us to tap into Paddle Scotland funding for courses we run ourselves.</p>
+
+    <p>Other training and qualifications have options that are already quite heavily subsidised at the course level, and it makes much less difference whether they are organised as a group or booked individually. For these, the simpler route is usually for members to sign up directly.</p>
+  </section>
+
+  <!-- INDIVIDUAL SIGN-UP: WHAT IT IS -->
+  <section class="panel" id="ind-what">
+    <h2>Individual sign-up</h2>
+    <p class="panel-intro">For some qualifications, there's nothing to organise - the courses are already scheduled, subsidised, and open to book. A member with the interest and the prerequisites signs up directly.</p>
+
+    <p>Paddle Scotland runs a rolling calendar of courses at the Core Coach / Sheltered Water Coach end of the spectrum. These are funded centrally, open to anyone, and scheduled at venues across the country. For these courses, <strong>the club's job is to encourage members to take them up - not to set them up</strong>.</p>
+
+    <div class="callout">
+      <span class="label">Club policy</span>
+      Any course that is run and subsidised by Paddle Scotland at the course level can be pursued individually. The club is supportive of this route and happy to point members at the right resources, but does not organise or facilitate these courses as group events.
+    </div>
+
+    <h3>Which qualifications fit here</h3>
+    <p>The left end of the spectrum on the Overview:</p>
+    <ul>
+      <li><strong>Core Coach</strong> - runs as open Paddle Scotland courses across Scotland on a regular basis. Heavily subsidised.</li>
+      <li><strong>Sheltered Water Coach</strong> - usually run as open courses too. Individual sign-up is typically the simpler route.</li>
+      <li><strong>Other Paddle Scotland courses</strong> - occasional or regional courses that Paddle Scotland advertises directly. Members are encouraged to watch for these and sign up if they look relevant.</li>
+    </ul>
+
+    <h3>What this tab covers</h3>
+    <p>Three things: <strong>how to find a course</strong>, <strong>what the club can contribute</strong>, and the practical points that sit between those two. If you're organising something at club level - SKL, PSL, or similar - use the <strong>Group courses</strong> tab instead.</p>
+  </section>
+
+  <!-- INDIVIDUAL SIGN-UP: FINDING A COURSE -->
+  <section class="panel" id="ind-finding">
+    <h2>Finding a course</h2>
+    <p class="panel-intro">Paddle Scotland is the first stop. After that, it's word of mouth and watching for what providers in the area are running.</p>
+
+    <h3>Paddle Scotland's course calendar</h3>
+    <p>Paddle Scotland runs a rolling calendar of courses which can be viewed on <strong>JustGo</strong> - their membership and bookings platform. Dates, venues, prices, and sign-up links for recognised coaching and leadership courses all live there. Check it periodically, as new dates are added through the year.</p>
+
+    <div class="callout">
+      <span class="label">A practical note</span>
+      JustGo's course search can be a little frustrating to navigate - filtering by discipline, region, or date doesn't always behave quite as you'd expect. It's worth scrolling through the full list rather than relying on filters alone, and checking back over a few weeks if the course you want isn't currently listed.
+    </div>
+
+    <ul>
+      <li><strong>Paddle Scotland courses on JustGo</strong> - <a href="https://sca.justgo.com/Workbench/i/r/EventsAndBookings/" target="_blank" rel="noopener">sca.justgo.com &rarr; Events and Bookings</a></li>
+      <li><strong>Events and workshops</strong> often include free or low-cost personal development days that don't lead to a specific qualification but count as useful experience and CPD.</li>
+    </ul>
+
+    <h3>Prerequisites matter</h3>
+    <p>Most qualifications have prerequisites - logbook hours, prior awards, minimum age, or specific prior training. Check these before booking. Paddle Scotland's course pages spell them out, but if in doubt the <strong>coaching coordinator</strong> can help you work out whether you're ready.</p>
+
+    <h3>Word of mouth and provider newsletters</h3>
+    <p>Beyond the Paddle Scotland calendar, individual providers sometimes run open courses directly. Mailing lists from providers you've worked with before, or that the club has worked with (see the <strong>Group courses &rarr; Finding providers</strong> tab), are a good source. Other club members who've recently done a qualification are another - ask around.</p>
+
+    <h3>Booking and paying</h3>
+    <p>For open Paddle Scotland courses, the sign-up process is direct with Paddle Scotland or the delivering provider. The member pays up front at the point of booking. From the club's side there's nothing to organise - though see the next tab for what the club may be able to contribute.</p>
+  </section>
+
+  <!-- INDIVIDUAL SIGN-UP: CLUB SUPPORT -->
+  <section class="panel" id="ind-support">
+    <h2>What the club can contribute</h2>
+    <p class="panel-intro">Even when a course is organised centrally by Paddle Scotland, the club may offer practical or financial support - particularly for qualifications that feed back into DCKC as coaches and leaders.</p>
+
+    <p>Support varies by qualification and by the year's budget, but the principle is simple: when a member's qualification will benefit the club (as a volunteer coach, a trip leader, or someone who can mentor newer paddlers), the club has an interest in helping them get there.</p>
+
+    <div class="callout">
+      <span class="label">Important</span>
+      Contributions from the club for individually-booked courses are <strong>not automatic</strong>. They depend on the qualification, the member's commitment to giving back to the club, and what budget is available. Discuss it with the <strong>coaching coordinator</strong> before you book, not after.
+    </div>
+
+    <h3>What might be available</h3>
+    <ul>
+      <li><strong>Partial reimbursement of course fees</strong> for qualifications that directly benefit the club - particularly coaching qualifications for members who will then coach within the club.</li>
+      <li><strong>Kit loan</strong> from the club fleet if a specific qualification needs equipment the member doesn't have.</li>
+      <li><strong>Logbook and mentoring support</strong> from existing qualified members - sometimes what someone needs isn't money, but someone to paddle with while they build up the required experience.</li>
+    </ul>
+
+    <h3>How to ask</h3>
+    <p>Drop a note to the coaching coordinator with:</p>
+    <ul>
+      <li>The course you're looking at (link to the Paddle Scotland page is ideal)</li>
+      <li>Dates and venue</li>
+      <li>Cost</li>
+      <li>Why you want to do it and how you'd expect to contribute back to the club</li>
+    </ul>
+
+    <p>A short, concrete message is better than a long one. Expect a conversation rather than a form-filling exercise.</p>
+
+    <h3>Giving back</h3>
+    <p>The club is happy to invest in members' qualifications on the understanding that qualified members contribute back - by coaching, leading trips, mentoring, helping organise club sessions, or being part of the group that runs future courses. This isn't a formal contract; it's simply how the club's coaching and leadership depth grows over time. If you've been helped to qualify, think about what you'd like to offer in return.</p>
+  </section>
+
+  <!-- GROUP: OVERVIEW -->
+  <section class="panel" id="group-overview">
+    <h2>Group courses</h2>
+    <p class="panel-intro">This is where the club pulls together members into a shared course or assessment, with costs shared between participants and topped up by the club and Paddle Scotland. It's the model that makes leader progression economically viable.</p>
+
+    <p>For group courses, participants typically contribute <strong>£50 per course</strong>. Training courses take a full group (ratios vary with the course, but filling to the maximum is always preferred) and assessments typically take two candidates per day. <em>Training courses typically run over two days; assessments are typically a single day.</em></p>
 
     <p>The club gets support from <strong>Paddle Scotland</strong> of £100 per day towards a nominal £200 day rate for recognised coaching and assessment. That subsidy, combined with member contributions and the club's own investment, is what makes the economics work. In practice, £200 per day is often not a sufficient rate for many courses or assessments, so the club tops this up - particularly for assessments, which it treats as an investment in its future leaders.</p>
 
@@ -1207,8 +1570,7 @@
       </ol>
     </div>
 
-    <h3>Why the club does it this way</h3>
-    <p>Running courses internally keeps costs down for members, builds up the club's pool of qualified paddlers, and makes our water time together safer and more enjoyable. It also means we build ongoing relationships with good providers - which is worth a great deal when it comes to getting dates in diaries, especially for the weather-dependent courses.</p>
+    <p>The sub-tabs that follow work through each of these steps in detail - funding mechanics, how to approach providers, the full organising checklist, how sign-up and payment work, communicating with the group, and the course info pages for candidates, trainees, and guinea pigs.</p>
   </section>
 
   <!-- PANEL 2: FUNDING -->
@@ -1802,23 +2164,73 @@
   <footer>
     <div class="ornament">· · ·</div>
     <div>DCKC Members' Guide · Facilitating Learning</div>
-    <div>Drumchapel &amp; Clydebank Kayak Club</div>
+    <div>Drumchapel &amp; Clydebank Kayak Club · v1.3</div>
   </footer>
 
 </div>
 
 <script>
-  const tabs = document.querySelectorAll('.tab');
+  // Two-level tab system:
+  // Top-level tabs choose a pathway (overview / individual / group).
+  // Each pathway has its own sub-tabs and panels.
+
+  const topTabs = document.querySelectorAll('.tab-top');
+  const subNavs = document.querySelectorAll('.tabs-sub');
+  const subTabs = document.querySelectorAll('.tab');
   const panels = document.querySelectorAll('.panel');
 
-  tabs.forEach(tab => {
+  // Map of pathway → default sub-panel to show when that pathway is opened
+  const defaultPanels = {
+    'overview': 'overview',
+    'individual': 'ind-what',
+    'group': 'group-overview'
+  };
+
+  function showPanel(id) {
+    panels.forEach(p => p.classList.remove('active'));
+    const el = document.getElementById(id);
+    if (el) el.classList.add('active');
+  }
+
+  function activateSubTab(target) {
+    subTabs.forEach(t => t.classList.remove('active'));
+    const tab = Array.from(subTabs).find(t => t.dataset.target === target);
+    if (tab) tab.classList.add('active');
+  }
+
+  function selectPathway(pathway) {
+    // Update top tab state
+    topTabs.forEach(t => t.classList.toggle('active', t.dataset.pathway === pathway));
+
+    // Show appropriate sub-nav (or none for overview)
+    subNavs.forEach(nav => {
+      const matches = nav.dataset.pathwayScope === pathway;
+      if (matches) nav.removeAttribute('hidden');
+      else nav.setAttribute('hidden', '');
+    });
+
+    // Show the default panel for this pathway
+    const defaultPanel = defaultPanels[pathway];
+    showPanel(defaultPanel);
+    activateSubTab(defaultPanel);
+  }
+
+  topTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      selectPathway(tab.dataset.pathway);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  subTabs.forEach(tab => {
     tab.addEventListener('click', () => {
       const target = tab.dataset.target;
-      tabs.forEach(t => t.classList.remove('active'));
-      panels.forEach(p => p.classList.remove('active'));
-      tab.classList.add('active');
-      document.getElementById(target).classList.add('active');
-      window.scrollTo({ top: document.querySelector('.tabs').offsetTop - 20, behavior: 'smooth' });
+      showPanel(target);
+      activateSubTab(target);
+      const parentNav = tab.closest('.tabs-sub');
+      if (parentNav) {
+        window.scrollTo({ top: parentNav.offsetTop - 20, behavior: 'smooth' });
+      }
     });
   });
 </script>
