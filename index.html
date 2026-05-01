@@ -6,7 +6,7 @@
 <title>UpSkill! A Guide for DCKC Members</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@300;400;500;600&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #2a3a55;
@@ -1339,6 +1339,141 @@
     .matrix .m-course { font-size: 0.85rem; }
     .matrix .m-note { font-size: 0.7rem; }
   }
+
+  /* Decision flow chart - hand-drawn feel */
+  .flowchart {
+    margin: 2rem 0 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Kalam', 'Fraunces', cursive;
+  }
+  .flow-step {
+    background: var(--paper-warm);
+    border: 2.5px solid var(--ink);
+    /* irregular corners give a hand-drawn feel */
+    border-radius: 22px 12px 26px 14px / 14px 24px 12px 22px;
+    padding: 0.85rem 1.1rem;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 2px 3px 0 rgba(42, 58, 85, 0.18);
+  }
+  .flow-step-text {
+    font-weight: 700;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    color: var(--ink);
+    font-family: 'Kalam', 'Fraunces', cursive;
+  }
+  .flow-step-sub {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    margin-top: 0.3rem;
+    font-weight: 400;
+    font-family: 'Kalam', 'Fraunces', cursive;
+    font-style: italic;
+  }
+  .flow-step.flow-start {
+    border-color: var(--accent-deep);
+    border-style: solid;
+    background: var(--paper);
+    max-width: 34rem;
+    transform: rotate(-0.4deg);
+    border-radius: 18px 26px 14px 22px / 22px 12px 24px 16px;
+  }
+  .flow-step.flow-decision {
+    border-color: var(--accent-deep);
+    border-style: dashed;
+    background: var(--paper);
+    transform: rotate(0.5deg);
+  }
+  .flow-step.flow-outcome {
+    background: var(--ink);
+    border-color: var(--ink);
+    transform: rotate(-0.3deg);
+    box-shadow: 3px 4px 0 rgba(184, 90, 32, 0.35);
+  }
+  .flow-step.flow-outcome:nth-of-type(odd) {
+    transform: rotate(0.4deg);
+  }
+  .flow-step.flow-outcome .flow-step-text {
+    color: var(--paper);
+  }
+  .flow-step.flow-outcome .flow-step-sub {
+    color: var(--accent);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+  }
+  .flow-arrow {
+    font-size: 1.85rem;
+    color: var(--accent-deep);
+    line-height: 0.9;
+    font-family: 'Kalam', cursive;
+    font-weight: 700;
+    transform: rotate(-3deg);
+  }
+  .flow-arrow:nth-of-type(even) {
+    transform: rotate(4deg);
+  }
+  .flow-branches {
+    display: flex;
+    gap: 1.2rem;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .flow-branch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+    min-width: 0;
+  }
+  .flow-branch-label {
+    font-family: 'Kalam', cursive;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--accent-deep);
+    padding: 0.15rem 1rem 0.05rem;
+    background: var(--paper);
+    border: 2.5px solid var(--accent-deep);
+    border-radius: 30px 18px 26px 16px / 18px 24px 14px 22px;
+    transform: rotate(-2deg);
+    box-shadow: 1px 2px 0 rgba(184, 90, 32, 0.25);
+  }
+  .flow-branch-label:nth-of-type(even),
+  .flow-sub-branch:nth-child(even) .flow-branch-label {
+    transform: rotate(2deg);
+  }
+  .flow-branch-label.small {
+    font-size: 0.92rem;
+    padding: 0.08rem 0.75rem 0;
+  }
+  .flow-sub-branches {
+    display: flex;
+    gap: 0.7rem;
+    width: 100%;
+    align-items: flex-start;
+  }
+  .flow-sub-branch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    flex: 1;
+    min-width: 0;
+  }
+  @media (max-width: 720px) {
+    .flow-branches,
+    .flow-sub-branches {
+      flex-direction: column;
+    }
+  }
 </style>
 </head>
 <body>
@@ -1373,7 +1508,7 @@
       </svg>
       <div class="logo">Drumchapel &amp; Clydebank<br>Kayak Club</div>
     </div>
-    <div class="meta">Members' Guide · v1.5</div>
+    <div class="meta">Members' Guide · v1.6</div>
   </header>
 
   <div class="title-block">
@@ -1420,7 +1555,72 @@
     </ul>
 
     <h3>Which pathway for which qualification?</h3>
-    <p>Any course run and subsidised by Paddle Scotland at the course level can be pursued individually. Some qualifications only really work well at club level. The spectrum below shows some of the many examples of training courses and qualifications, and how they fit with finding the optimal delivery method. Knowing which end of the spectrum you're on helps you decide whether to book on yourself or step up as a course organiser-facilitator.</p>
+    <div class="flowchart">
+      <div class="flow-step flow-start">
+        <div class="flow-step-text">Is the course already available as a Paddle Scotland supported course?</div>
+        <div class="flow-step-sub">(check Just Go)</div>
+      </div>
+
+      <div class="flow-arrow">&darr;</div>
+
+      <div class="flow-branches">
+        <!-- YES branch -->
+        <div class="flow-branch">
+          <div class="flow-branch-label">Yes</div>
+          <div class="flow-arrow">&darr;</div>
+          <div class="flow-step flow-decision">
+            <div class="flow-step-text">Are other club members interested?</div>
+          </div>
+          <div class="flow-arrow">&darr;</div>
+          <div class="flow-sub-branches">
+            <div class="flow-sub-branch">
+              <div class="flow-branch-label small">Yes</div>
+              <div class="flow-arrow">&darr;</div>
+              <div class="flow-step flow-outcome">
+                <div class="flow-step-text">Let them know your plan and book on, or organise a provider to come and run a course specifically for the club</div>
+                <div class="flow-step-sub">See Group courses</div>
+              </div>
+            </div>
+            <div class="flow-sub-branch">
+              <div class="flow-branch-label small">No</div>
+              <div class="flow-arrow">&darr;</div>
+              <div class="flow-step flow-outcome">
+                <div class="flow-step-text">Book on to a course</div>
+                <div class="flow-step-sub">See Individual sign-up</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- NO branch -->
+        <div class="flow-branch">
+          <div class="flow-branch-label">No</div>
+          <div class="flow-arrow">&darr;</div>
+          <div class="flow-step flow-decision">
+            <div class="flow-step-text">Are other club members interested?</div>
+          </div>
+          <div class="flow-arrow">&darr;</div>
+          <div class="flow-sub-branches">
+            <div class="flow-sub-branch">
+              <div class="flow-branch-label small">Yes</div>
+              <div class="flow-arrow">&darr;</div>
+              <div class="flow-step flow-outcome">
+                <div class="flow-step-text">Look to find a provider for a group</div>
+                <div class="flow-step-sub">See Group courses</div>
+              </div>
+            </div>
+            <div class="flow-sub-branch">
+              <div class="flow-branch-label small">No</div>
+              <div class="flow-arrow">&darr;</div>
+              <div class="flow-step flow-outcome">
+                <div class="flow-step-text">Find a course you can book on as an individual</div>
+                <div class="flow-step-sub">See Individual sign-up</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="spectrum-wrapper">
       <div class="spectrum-axis-labels">
@@ -1445,17 +1645,15 @@
         <div class="spectrum-example">
           <div class="spectrum-example-position">Left of the spectrum</div>
           <div class="spectrum-example-name">Core Coach</div>
-          <p class="spectrum-example-body">Almost entirely funded by Paddle Scotland and run as open courses that members can book directly. There's little for a club organiser to do here beyond pointing interested members at the Paddle Scotland website. The club's role is to encourage members to take these up, not to set them up.</p>
+          <p class="spectrum-example-body">Almost entirely funded by Paddle Scotland, open to Paddle Scotland members, and run as open courses that members can book directly. There's little for a club organiser to do here beyond pointing interested members at the Paddle Scotland website. The club's role is to encourage members to take these up, not to set them up.</p>
         </div>
         <div class="spectrum-example right-end">
           <div class="spectrum-example-position">Right of the spectrum</div>
           <div class="spectrum-example-name">SKL (and ASKL)</div>
-          <p class="spectrum-example-body">These are where the setup and funding work best at club level. A group of interested members, an organiser-facilitator, a negotiated provider rate, and a club top-up. Most of the <strong>Group courses</strong> content is written with SKL and PSL in mind - that's where the framework earns its keep.</p>
+          <p class="spectrum-example-body">These are where the setup and funding work best at club level. A group of interested members, an organiser-facilitator, a negotiated provider rate, and a club top-up.</p>
         </div>
       </div>
     </div>
-
-    <p>PSL sits in the middle of the spectrum - some PSL training does run as open Paddle Scotland courses that members can join, but in practice the club has found it more effective to organise it in-house alongside SKL so that members can progress through both qualifications with a consistent group and provider. Sheltered Water Coach sits closer to the Core Coach end - it runs as open courses often enough that individual sign-up is usually the simpler route.</p>
 
     <h3>Why is one pathway better than the other in certain situations?</h3>
     <p>Some courses greatly benefit from splitting the cost of a provider amongst a group, with the provider's rate negotiated at course level. Typically in these cases a whole group of club members can be upskilled for the same cost as someone attending an equivalent commercial course. This also allows us to tap into Paddle Scotland funding for courses we run ourselves.</p>
@@ -2164,7 +2362,7 @@
   <footer>
     <div class="ornament">· · ·</div>
     <div>DCKC Members' Guide · Facilitating Learning</div>
-    <div>Drumchapel &amp; Clydebank Kayak Club · v1.5</div>
+    <div>Drumchapel &amp; Clydebank Kayak Club · v1.6</div>
   </footer>
 
 </div>
