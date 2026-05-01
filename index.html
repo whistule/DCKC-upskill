@@ -1474,6 +1474,48 @@
       flex-direction: column;
     }
   }
+
+  /* Simple horizontal mini-flow */
+  .mini-flow {
+    display: flex;
+    align-items: stretch;
+    gap: 0.6rem;
+    margin: 1.5rem 0 2.5rem;
+    flex-wrap: wrap;
+    font-family: 'Kalam', 'Fraunces', cursive;
+  }
+  .mini-flow-step {
+    background: var(--paper-warm);
+    border: 2.5px solid var(--ink);
+    border-radius: 18px 12px 22px 14px / 14px 22px 12px 20px;
+    padding: 0.7rem 1rem;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--ink);
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 3px 0 rgba(42, 58, 85, 0.18);
+  }
+  .mini-flow-step:nth-child(odd) { transform: rotate(-0.4deg); }
+  .mini-flow-step:nth-child(even) { transform: rotate(0.5deg); }
+  .mini-flow-arrow {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--accent-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    font-family: 'Kalam', cursive;
+  }
+  @media (max-width: 640px) {
+    .mini-flow { flex-direction: column; }
+    .mini-flow-arrow { transform: rotate(90deg); }
+  }
 </style>
 </head>
 <body>
@@ -1508,7 +1550,7 @@
       </svg>
       <div class="logo">Drumchapel &amp; Clydebank<br>Kayak Club</div>
     </div>
-    <div class="meta">Members' Guide · v1.14</div>
+    <div class="meta">Members' Guide · v1.15</div>
   </header>
 
   <div class="title-block">
@@ -1538,6 +1580,11 @@
     <button class="tab" data-target="info-pages"><span class="num">vi</span>Course info pages</button>
   </nav>
 
+  <nav class="tabs tabs-sub" role="tablist" data-pathway-scope="finding" aria-label="Finding a Course or Provider sections" hidden>
+    <button class="tab" data-target="finding"><span class="num">i</span>Finding a course or provider</button>
+    <button class="tab" data-target="finding-rates"><span class="num">ii</span>Agreeing an acceptable rate for group course providers</button>
+  </nav>
+
   <!-- PANEL 1: OVERVIEW -->
   <section class="panel active" id="overview">
     <h2>The idea</h2>
@@ -1551,12 +1598,7 @@
     <p>The club can't run every course someone might want centrally. What it can do is provide the structure, the funding pathway, and the accumulated practical know-how so that any member with the motivation to organise a course for themselves and others has what they need to make it happen.</p>
 
     <h3>Two pathways</h3>
-    <p>Some courses and qualifications work best when members find the course and book on individually. Other courses and assessments work best for everyone when the club can pull together a group of members, so that a course or assessment can be run for club members with the costs shared between them. This guide covers <strong>both pathways</strong>:</p>
-
-    <ul>
-      <li>If you're looking at a course you can book directly with Paddle Scotland, see the <strong>Individual sign-up</strong> tab.</li>
-      <li>If you're organising or joining a club-run course, see the <strong>DCKC Run courses</strong> tab.</li>
-    </ul>
+    <p>Some courses and qualifications work best when members find the course and book on individually. Other courses and assessments work best for everyone when the club can pull together a group of members, so that a course or assessment can be run for club members with the costs shared between them. This guide covers <strong>both pathways</strong> with guidance on which is the most appropriate route.</p>
 
     <h3>Which pathway for which qualification?</h3>
     <div class="flowchart">
@@ -1589,7 +1631,7 @@
               <div class="flow-branch-label small">No</div>
               <div class="flow-arrow">&darr;</div>
               <div class="flow-step flow-outcome">
-                <div class="flow-step-text">Book on to a course</div>
+                <div class="flow-step-text">Find a course you can book on as an individual</div>
                 <div class="flow-step-sub">See Individual sign-up</div>
               </div>
             </div>
@@ -1668,7 +1710,15 @@
   <!-- PANEL: FINDING A COURSE OR PROVIDER -->
   <section class="panel" id="finding">
     <h2>Finding a Course or Provider</h2>
-    <p class="panel-intro">Paddle Scotland's calendar is the first stop for open courses. Beyond that, the providers the club has worked with successfully are listed below.</p>
+    <p class="panel-intro">Paddle Scotland's calendar is the first stop for open courses. Paddle Scotland also operates a register of providers, some of which DCKC have worked with and are recommended below.</p>
+
+    <div class="mini-flow">
+      <div class="mini-flow-step">Check JustGo</div>
+      <div class="mini-flow-arrow">&rarr;</div>
+      <div class="mini-flow-step">Look at approved DCKC providers</div>
+      <div class="mini-flow-arrow">&rarr;</div>
+      <div class="mini-flow-step">Check Paddle Scotland register</div>
+    </div>
 
     <h3>Paddle Scotland's course calendar (JustGo)</h3>
     <p>Paddle Scotland runs a rolling calendar of courses which can be viewed on <strong>JustGo</strong> - their membership and bookings platform. Dates, venues, prices, and sign-up links for recognised coaching and leadership courses all live there. Check it periodically, as new dates are added through the year.</p>
@@ -1863,9 +1913,9 @@
     <h2>DCKC Run courses</h2>
     <p class="panel-intro">When there is a group of people within the club all looking to pick up similar expertise, it is beneficial for the club to organise a course to split costs and maximise the number of people who benefit. Often it just takes one person to facilitate this for a group, and people appreciate and often repay the favour.</p>
 
-    <p>For DCKC Run courses, participants typically contribute <strong>£50 per course</strong>. Training courses take a full group (ratios vary with the course, but filling to the maximum is always preferred) and assessments typically take two candidates per day. <em>Training courses typically run over two days; assessments are typically a single day.</em></p>
-
     <p>The club gets support from <strong>Paddle Scotland</strong> of £100 per day towards a nominal £200 day rate for recognised coaching and assessment. That subsidy, combined with member contributions and the club's own investment, is what makes the economics work. In practice, £200 per day is often not a sufficient rate for many courses or assessments, so the club tops this up - particularly for assessments, which it treats as an investment in its future leaders.</p>
+
+    <p>For DCKC Run courses, participants typically contribute <strong>£50 per course</strong>. Training courses take a full group (ratios vary with the course, but filling to the maximum is always preferred) and assessments typically take two candidates per day. <em>Training courses typically run over two days; assessments are typically a single day.</em></p>
 
     <div class="callout">
       <span class="label">Steps for a successful learning event</span>
@@ -2389,7 +2439,7 @@
   <footer>
     <div class="ornament">· · ·</div>
     <div>DCKC Members' Guide · Facilitating Learning</div>
-    <div>Drumchapel &amp; Clydebank Kayak Club · v1.14</div>
+    <div>Drumchapel &amp; Clydebank Kayak Club · v1.15</div>
   </footer>
 
 </div>
